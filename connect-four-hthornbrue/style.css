@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  align-items: center;
+  background-color: rgb(20, 20, 20);
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  padding: 25px;
+  width: 100%;
+}
+
+h1 {
+  text-transform: uppercase;
+  color: white;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  height: 700px;
+  margin: 10px 0 25px;
+  width: 700px;
+}
+
+.cell {
+  align-items: center;
+  background: rgb(0, 0, 255);
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 100px;
+}
+
+.cell.row-top::after {
+  background: transparent;
+  border-radius: 50%;
+  border: 3px solid rgb(130, 129, 129);
+  content: "";
+  cursor: pointer;
+  height: 75px;
+  width: 75px;
+}
+
+.cell::after {
+  background: white;
+  border-radius: 50%;
+  border: 3px solid rgb(130, 129, 129);
+  content: "";
+  cursor: pointer;
+  height: 75px;
+  width: 75px;
+}
+
+.cell:not(.row-top).red::after {
+  background-image: url("images/red.png");
+  background-size: 75px 75px;
+}
+.cell:not(.row-top).yellow::after {
+  background: yellow;
+  background-image: url("images/yellow.png");
+  background-size: 75px 75px;
+}
+
+.cell.row-top {
+  background: transparent;
+}
+
+.cell.row-top::after {
+  border: none;
+}
+
+.cell.row-top.red::after {
+  background-image: url("images/red.png");
+  background-size: 75px 75px;
+  border: 3px solid black;
+}
+
+.cell.row-top.yellow::after {
+  background-image: url("images/yellow.png");
+  background-size: 75px 75px;
+  border: 3px solid black;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+}
+
+.reset {
+  background-color: #0011f8;
+  border-radius: 50px;
+  border: none;
+  color: rgb(253, 253, 253);
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 16px rgba(1, 0, 0, 0.589),
+    -2px -2px 4px rgba(255, 255, 255, 0.695);
+  box-shadow: 4px 4px 8px rgba(255, 255, 255, 0.589) inset,
+    1px 1px 2px rgb(1, 0, 0);
+}
+
+.reset:hover {
+  background-color: #007bff;
+}
+
+.reset:active {
+  background-color: #4d7ef1;
+}
+
+.status {
+  display: block;
+  font-size: 20px;
+}
+
+/* Util CSS */
+.left-border {
+  border-left: 3px solid black;
+}
+
+.top-border {
+  border-top: 3px solid black;
+}
+
+.right-border {
+  border-right: 3px solid black;
+}
+
+.bottom-border {
+  border-bottom: 3px solid black;
+}
+
+.left-border.top-border {
+  border-radius: 10px 0 0 0;
+}
+
+.right-border.top-border {
+  border-radius: 0 10px 0 0;
+}
+
+.right-border.bottom-border {
+  border-radius: 0 0 10px 0;
+}
+
+.left-border.bottom-border {
+  border-radius: 0 0 0 10px;
+}
+
+#displayWinner {
+  color: rgb(72, 49, 244);
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 1.4%;
+}
+
+#displayGameOver {
+  color: rgb(255, 255, 255);
+  font-size: 40px;
+  margin-top: 1.5%;
+  font-weight: bold;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-700px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.red.drop-animation::after,
+.yellow.drop-animation::after {
+  animation: drop 0.5s ease-out;
+  z-index: 999;
+}
